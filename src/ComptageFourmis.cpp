@@ -11,7 +11,6 @@
 AntDoor doorA(30, 31);
 AntDoorManager doorManagerA(doorA);
 
-
 AntDoor doorB(32, 33);
 AntDoorManager doorManagerB(doorB);
 
@@ -43,7 +42,7 @@ void setup() {
 	Serial.print("Initializing SD card...");
 	// see if the card is present and can be initialized:
 	if (!SD.begin(CHIPSELECT)) {
-		Serial.println("Card failed, or not present");
+		Serial.println("SD card failed, or not present");
 		return;
 	}
 
@@ -52,7 +51,8 @@ void setup() {
 	sdManager->addAntDoorData(doorManagerC.getAntData());
 	sdManager->addAntDoorData(doorManagerD.getAntData());
 
-	Serial.println("card initialized.");
+	Serial.println("SD card initialized.");
+	Serial.println("Initialization Ok...");
 }
 
 void loop() {
