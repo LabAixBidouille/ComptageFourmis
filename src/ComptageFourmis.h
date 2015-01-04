@@ -6,7 +6,7 @@
 
 #ifndef _ComptageFourmis_H_
 #define _ComptageFourmis_H_
-#include "Arduino.h"
+#include <Arduino.h>
 //add your includes for the project ComptageFourmis here
 
 //end of add your includes here

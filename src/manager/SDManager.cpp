@@ -5,8 +5,8 @@
  *      Author: sebastien
  */
 
-#include <SDManager.h>
-#include <DeviceManager.h>
+#include "SDManager.h"
+#include "DeviceManager.h"
 
 SDManager::SDManager():lastChangeTime(0UL), refreshDelay(DEFAULT_REFRESH_DELAY) {
 
