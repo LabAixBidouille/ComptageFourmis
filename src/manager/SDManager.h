@@ -22,7 +22,7 @@ public:
 	SDManager();
 	virtual ~SDManager();
 	virtual void update(unsigned long currentTime);
-	void addAntDoorData(const AntDoorData* antDoorData);
+	void addAntDoorData(const AntDoorData& antDoorData);
 	void setRefreshDelay(unsigned int refreshDelay) {
 		this->refreshDelay = refreshDelay;
 	}
@@ -36,8 +36,8 @@ private:
 	void openFile(const char *filepath) ;
 	void closeFile();
 	void refresh();
-	void writeDateTime(const DateTime* dateTime);
-	void writeAntDoorData(const AntDoorData* antDoorData);
+	void writeDateTime(const DateTime& dateTime);
+	void writeAntDoorData(const AntDoorData& antDoorData);
 };
 
 #endif /* SDMANAGER_H_ */

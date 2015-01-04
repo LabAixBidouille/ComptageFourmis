@@ -33,10 +33,10 @@ void setup() {
 	Serial.print("Initializing LCD...");
 	lcd.begin(16, 2);
 	lcdManager->setLcd(&lcd);
-	lcdManager->addAntDoorData(&doorManagerA.getAntData());
-	lcdManager->addAntDoorData(&doorManagerB.getAntData());
-	lcdManager->addAntDoorData(&doorManagerC.getAntData());
-	lcdManager->addAntDoorData(&doorManagerD.getAntData());
+	lcdManager->addAntDoorData(doorManagerA.getAntData());
+	lcdManager->addAntDoorData(doorManagerB.getAntData());
+	lcdManager->addAntDoorData(doorManagerC.getAntData());
+	lcdManager->addAntDoorData(doorManagerD.getAntData());
 
 	Serial.println("LCD initialized.");
 
@@ -47,10 +47,10 @@ void setup() {
 		return;
 	}
 
-	sdManager->addAntDoorData(&doorManagerA.getAntData());
-	sdManager->addAntDoorData(&doorManagerB.getAntData());
-	sdManager->addAntDoorData(&doorManagerC.getAntData());
-	sdManager->addAntDoorData(&doorManagerD.getAntData());
+	sdManager->addAntDoorData(doorManagerA.getAntData());
+	sdManager->addAntDoorData(doorManagerB.getAntData());
+	sdManager->addAntDoorData(doorManagerC.getAntData());
+	sdManager->addAntDoorData(doorManagerD.getAntData());
 
 	Serial.println("card initialized.");
 }

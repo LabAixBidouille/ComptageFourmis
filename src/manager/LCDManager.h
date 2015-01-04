@@ -14,7 +14,7 @@ class LCDManager: public AbstractManager<LCDManager>, public Updatable {
 public:
 	LCDManager();
 	virtual void update(unsigned long currentTime);
-	void addAntDoorData(const AntDoorData* antDoorData);
+	void addAntDoorData(const AntDoorData& antDoorData);
 
 	void setLcd(LiquidCrystal* lcd) {
 		this->lcd = lcd;
@@ -32,8 +32,8 @@ private:
 
 	void refreshDisplay();
 	void write(const char* text);
-	void writeDateTime(const DateTime* dateTime);
-	void writeAntDoorData(const AntDoorData* antDoorData);
+	void writeDateTime(const DateTime& dateTime);
+	void writeAntDoorData(const AntDoorData& antDoorData);
 };
 
 #endif /* LCD_MANAGER_H_ */
