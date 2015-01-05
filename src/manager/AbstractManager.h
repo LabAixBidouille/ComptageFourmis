@@ -15,9 +15,9 @@ public:
 		if (0 == singleton) {
 			singleton = new T;
 		}
-
 		return singleton;
 	}
+
 	static void kill() {
 		if (0 != singleton) {
 			delete singleton;

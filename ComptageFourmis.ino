@@ -1,12 +1,16 @@
-#include "LCDManager.h"
+#include <Wire.h>
+#include <SD.h>
+#include <LiquidCrystal.h>
+#include "RTClib.h"
+
 #include "SDManager.h"
+#include "LCDManager.h"
 #include "AntDoorManager.h"
 
-#define CHIPSELECT 10
+#define CHIPSELECT 53
 
 AntDoor doorA(30, 31);
 AntDoorManager doorManagerA(doorA);
-
 
 AntDoor doorB(32, 33);
 AntDoorManager doorManagerB(doorB);
@@ -17,13 +21,13 @@ AntDoorManager doorManagerC(doorC);
 AntDoor doorD(36, 37);
 AntDoorManager doorManagerD(doorD);
 
-LCDManager* lcdManager = LCDManager::getInstance();
+LCDManager* lcdManager;
 LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 
-SDManager* sdManager = SDManager::getInstance();
+SDManager* sdManager;
 
 void setup() {
-
+	lcdManager = LCDManager::getInstance();
 	Serial.begin(9600);
 
 	Serial.print("Initializing LCD...");
@@ -42,7 +46,7 @@ void setup() {
 		Serial.println("Card failed, or not present");
 		return;
 	}
-
+	sdManager = SDManager::getInstance();
 	sdManager->addAntDoorData(doorManagerA.getAntData());
 	sdManager->addAntDoorData(doorManagerB.getAntData());
 	sdManager->addAntDoorData(doorManagerC.getAntData());

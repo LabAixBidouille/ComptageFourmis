@@ -32,12 +32,14 @@ private:
 	unsigned int refreshDelay;
 	Vector<const AntDoorData*> doorsData;
 	File file;
-
+	bool firstRefresh;
 	void openFile(const char *filepath) ;
 	void closeFile();
 	void refresh();
 	void writeDateTime(const DateTime& dateTime);
 	void writeAntDoorData(const AntDoorData& antDoorData);
+	void writeHeader();
+	void writeCurrentData();
 };
 
 #endif /* SDMANAGER_H_ */

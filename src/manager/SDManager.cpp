@@ -8,7 +8,32 @@
 #include "SDManager.h"
 #include "DeviceManager.h"
 
-SDManager::SDManager():lastChangeTime(0UL), refreshDelay(DEFAULT_REFRESH_DELAY) {}
+void SDManager::writeHeader() {
+	openFile("mylou.csv");
+	file.print("Day");
+	file.print(";");
+	file.print("Month");
+	file.print(";");
+	file.print("Hour");
+	file.print(";");
+	file.print("Minute");
+	file.print(";");
+	for (size_t i = 0; i < doorsData.size(); ++i) {
+		file.print("In ");
+		file.print((char) (('A' + i)));
+		file.print(";");
+		file.print("Out ");
+		file.print((char) (('A' + i)));
+		file.print(";");
+		file.print("Stock ");
+		file.print((char) (('A' + i)));
+		file.print(";");
+	}
+	closeFile();
+}
+
+SDManager::SDManager():lastChangeTime(0UL), refreshDelay(DEFAULT_REFRESH_DELAY), doorsData(10), firstRefresh(true){
+}
 
 SDManager::~SDManager() {
 }
@@ -24,13 +49,21 @@ void SDManager::addAntDoorData(const AntDoorData& antDoorData)  {
 	doorsData.push_back(&antDoorData);
 }
 
-void SDManager::refresh() {
+void SDManager::writeCurrentData() {
 	openFile("mylou.csv");
 	writeDateTime(DeviceManager::getInstance()->getDateTime());
-	for(size_t i = 0; i < doorsData.size(); ++i){
+	for (size_t i = 0; i < doorsData.size(); ++i) {
 		writeAntDoorData(*doorsData[i]);
 	}
 	closeFile();
+}
+
+void SDManager::refresh() {
+	if(firstRefresh){
+		writeHeader();
+		firstRefresh = false;
+	}
+	writeCurrentData();
 }
 
 void SDManager::openFile(const char* filepath) {

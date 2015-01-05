@@ -13,7 +13,9 @@
 class LCDManager: public AbstractManager<LCDManager>, public Updatable {
 public:
 	LCDManager();
+
 	virtual void update(unsigned long currentTime);
+
 	void addAntDoorData(const AntDoorData& antDoorData);
 
 	void setLcd(LiquidCrystal* lcd) {
@@ -31,9 +33,10 @@ private:
 	Vector<const AntDoorData*> doorsData;
 
 	void refreshDisplay();
-	void write(const char* text);
 	void writeDateTime(const DateTime& dateTime);
 	void writeAntDoorData(const AntDoorData& antDoorData);
+	bool isRefreshDelayExceeded(unsigned long currentTime);
+	bool isOverflow(unsigned long currentTime);
 };
 
 #endif /* LCD_MANAGER_H_ */
